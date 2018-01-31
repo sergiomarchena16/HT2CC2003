@@ -24,9 +24,8 @@ public class Calculos implements calculadora{
     }
     
     public double operar(String expresion){
-        for(int i = 0; i<expresion.length(); i++){
-            data.add(expresion.charAt(i));
-        }
+            data.add(expresion.split(" "));
+        
         for(int j=0; j<expresion.length(); j++)//recorre la expresion y agrega los numeros al stack hasta encontrarse un simbolo
         {
             if(data.get(j)=="+")//Realiza la suma de los elementos del stack si encuentra un +
@@ -74,11 +73,13 @@ public class Calculos implements calculadora{
                     {
                         dividiendo=dividiendo/stack.peek();
                         stack.pop();
+                        return dividiendo;
                     }
                     else if(k==1)//multiplica el siguiente numero por la division anterior (1/dividendo)
                     {
                         dividiendo=dividiendo*stack.peek();
                         stack.pop();
+                        return dividiendo;
                     }
                 }
                 stack.push(dividiendo);
@@ -88,8 +89,9 @@ public class Calculos implements calculadora{
                 stack.push((double)data.get(j));
                 }
         }
-        
-         return stack.peek();   
+        double respuesta=stack.peek();
+        stack.empty();
+         return respuesta;   //devuelve la respuesta
     }
     
     
