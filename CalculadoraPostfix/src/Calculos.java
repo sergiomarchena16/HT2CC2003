@@ -70,6 +70,7 @@ public class Calculos implements calculadora{
                         stack.pop();
                         stack.pop();
                         stack.push(NaN);
+                        break;
                     }
                 else{
                     //si el denominador no es 0, lo divide por el primer elemento del stack
