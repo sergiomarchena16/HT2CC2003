@@ -19,17 +19,21 @@ public class Calculos implements calculadora{
     
     public Calculos()
     {
-        data=new ArrayList<>();
+        data=new ArrayList<String>();
         stack = new StackVector<Double>();
     }
     
     public double operar(String expresion){
-            data.add(expresion.split(" "));
-        
-        for(int j=0; j<expresion.length(); j++)//recorre la expresion y agrega los numeros al stack hasta encontrarse un simbolo
+        String[] nospace=expresion.split("\\s+");
+        for(int i=0; i<nospace.length; i++){
+        data.add(nospace[i]);
+        }
+        System.out.println(data);
+        for(int j=0; j<data.size(); j++)//recorre la expresion y agrega los numeros al stack hasta encontrarse un simbolo
         {
-            if(data.get(j)=="+")//Realiza la suma de los elementos del stack si encuentra un +
+            if(data.get(j).equals("+"))//Realiza la suma de los elementos del stack si encuentra un +
             {
+                
                 double sumando=0;
                 for(int k=0; k<stack.size(); k++)
                 {
@@ -38,7 +42,7 @@ public class Calculos implements calculadora{
                 }
                 stack.push(sumando);
             }
-            if(data.get(j)=="*")//Realiza la multiplicacion de los elementos del stack si encuentra un *
+            else if(data.get(j).equals("*"))//Realiza la multiplicacion de los elementos del stack si encuentra un *
             {
                 double multiplicando=1;
                 for(int k=0; k<stack.size(); k++)
@@ -47,8 +51,9 @@ public class Calculos implements calculadora{
                     stack.pop();
                 }
                 stack.push(multiplicando);
+                System.out.println(multiplicando);
             }
-            if(data.get(j)=="-")//Realiza la resta de los elementos del stack si encuentra un *
+            else if(data.get(j).equals("-"))//Realiza la resta de los elementos del stack si encuentra un *
             {
                 double restando=0;
                 for(int k=0; k<stack.size(); k++)
@@ -58,39 +63,41 @@ public class Calculos implements calculadora{
                 }
                 stack.push(restando);
             }
-            if(data.get(j)=="/")//Realiza la division de los elementos del stack si encuentra un *
+            else if(data.get(j).equals("/"))//Realiza la division de los elementos del stack si encuentra un *
             {
                 double dividiendo=1;
                 for(int k=0; k<stack.size(); k++)
                 {
-                    if(k==0 && stack.peek()==0)//si el denominador es 0, devuelve NaN
+                    if(stack.peek()==0)//si el denominador es 0, devuelve NaN
                     {
                         stack.pop();
                         stack.pop();
                         stack.push(NaN);
                     }
-                    else if(k==0 && stack.peek()!=0)//si el denominador no es 0, lo divide en el uno
+                    else//si el denominador no es 0, lo divide en el uno
                     {
                         dividiendo=dividiendo/stack.peek();
                         stack.pop();
-                        return dividiendo;
-                    }
-                    else if(k==1)//multiplica el siguiente numero por la division anterior (1/dividendo)
-                    {
                         dividiendo=dividiendo*stack.peek();
                         stack.pop();
+                        System.out.println(dividiendo);
                         return dividiendo;
+                        
                     }
                 }
                 stack.push(dividiendo);
             }
             else //si el indice del array no retorna uno de los valores, agrega un numero al stack
                 {
-                stack.push((double)data.get(j));
+                System.out.println(data.get(j) + "esta en else");
+                stack.push(Double.parseDouble((String) data.get(j)));
+                System.out.println(stack.peek() + "ultimo en stack");
                 }
         }
         double respuesta=stack.peek();
         stack.empty();
+        data.clear();
+        System.out.println(respuesta);
          return respuesta;   //devuelve la respuesta
     }
     
