@@ -65,25 +65,20 @@ public class Calculos implements calculadora{
             }
             else if(data.get(j).equals("/"))//Realiza la division de los elementos del stack si encuentra un *
             {
-                double dividiendo=1;
-                for(int k=0; k<stack.size(); k++)
-                {
-                    if(stack.peek()==0)//si el denominador es 0, devuelve NaN
+                if(stack.peek()==0)//si el denominador es 0, devuelve NaN
                     {
                         stack.pop();
                         stack.pop();
                         stack.push(NaN);
                     }
-                    else//si el denominador no es 0, lo divide en el uno
-                    {
-                        dividiendo=dividiendo/stack.peek();
-                        stack.pop();
-                        dividiendo=dividiendo*stack.peek();
-                        stack.pop();
-                        return dividiendo;
-                    }
+                else{
+                    //si el denominador no es 0, lo divide por el primer elemento del stack
+                    
+                        double denominador=stack.pop();
+                        double numerador = stack.pop();
+                        stack.push(numerador/denominador);
+                    
                 }
-                stack.push(dividiendo);
             }
             else //si el indice del array no retorna uno de los valores, agrega un numero al stack
                 {
