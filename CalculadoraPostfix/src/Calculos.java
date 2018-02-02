@@ -25,6 +25,11 @@ public class Calculos implements calculadora{
         stack = new StackVector<Double>();
     }
     
+    /**
+     * 
+     * @param expresion
+     * @return double : resultado de la operacion
+     */
     public double operar(String expresion){
         String[] nospace=expresion.split("\\s+");
         for(int i=0; i<nospace.length; i++){
