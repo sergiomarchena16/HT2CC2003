@@ -1,12 +1,14 @@
 /*
- * calculadora.java
- * 30/01/2018
- * Andrea Arguello 17801
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 /**
  *
- * @author Andrea Arguello 17801
+ * @author Andrea Arguello
+ * @author Sergio Marchena 
+ * @since 2/02/2018
  */
 public interface calculadora {
 
