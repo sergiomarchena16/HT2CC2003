@@ -1,16 +1,18 @@
-/*
- * Calculadora.java
- * 30/01/2018
- * Andrea Arguello 17801
- */
 
 import static java.lang.Double.NaN;
 import java.util.ArrayList;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
- * @author Andrea Arguello 17801
+ * @author Andrea Arguello
+ * @author Sergio Marchena
+ * @since 2/02/2018
  */
 public class Calculos implements calculadora{
     
@@ -24,27 +26,33 @@ public class Calculos implements calculadora{
     }
     
     public double operar(String expresion){
-        expresion=expresion.replace("\\r\\n|\\r|\\n", " ");
-        String[] nospace=expresion.split(" ");
+        String[] nospace=expresion.split("\\s+");
         for(int i=0; i<nospace.length; i++){
-                    data.add(nospace[i]);
-                    }
-        System.out.println(data);
-        
+        data.add(nospace[i]);
+        }
         for(int j=0; j<nospace.length; j++)//recorre la expresion y agrega los numeros al stack hasta encontrarse un simbolo
         {
             if(data.get(j).equals("+"))//Realiza la suma de los elementos del stack si encuentra un +
             {
                 
-                double sumando=stack.pop();
-                sumando=sumando+stack.pop();
+                double sumando=0;
+                for(int k=0; k<stack.size(); k++)
+                {
+                 sumando += stack.peek();
+                 stack.pop();
+                }
                 
                 stack.push(sumando);
             }
             else if(data.get(j).equals("*"))//Realiza la multiplicacion de los elementos del stack si encuentra un *
             {
-                double multiplicando=stack.pop();
-                multiplicando= multiplicando*stack.pop();
+                double multiplicando=1;
+                for(int k=0; k<stack.size(); k++)
+                {
+                    multiplicando=multiplicando*stack.peek();
+                    stack.pop();
+                    
+                }
                 stack.push(multiplicando);
             }
             else if(data.get(j).equals("-"))//Realiza la resta de los elementos del stack si encuentra un -
