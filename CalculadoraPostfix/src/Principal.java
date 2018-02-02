@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Principal.java
+ * 30/01/2018
+ * Andrea Arguello 17801
  */
 import java.util.*;
 import java.io.*;
@@ -9,7 +9,7 @@ import static java.lang.Double.NaN;
 
 /**
  *
- * @author cooli
+ * @author Andrea Arguello 17801
  */
 public class Principal {
 
@@ -24,7 +24,7 @@ public class Principal {
         FileReader reader = null;
         BufferedReader buffer = null;
         try {
-            datos = new File("datos.txt");
+            datos = new File("C:\\Users\\cooli\\Desktop\\Programacion\\datos.txt");
             reader = new FileReader(datos);
             buffer = new BufferedReader(reader);
             calculadora postfixCalc = new Calculos();
